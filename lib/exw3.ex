@@ -686,6 +686,8 @@ defmodule ExW3 do
     end
 
     def eth_call_helper(address, abi, method_name, args) do
+      IO.inspect([address, abi, method_name, args], label: "DEBUG")
+
       result =
         ExW3.eth_call([
           %{
@@ -694,8 +696,12 @@ defmodule ExW3 do
           }
         ])
 
+      IO.inspect([result], label: "DEBUG2")
+
       case result do
-        {:ok, data} -> ([:ok] ++ ExW3.decode_output(abi, method_name, data)) |> List.to_tuple()
+        {:ok, data} ->
+          IO.inspect([ExW3.decode_output(abi, method_name, data))], label: "DEBUG3")
+          ([:ok] ++ ExW3.decode_output(abi, method_name, data)) |> List.to_tuple()
         {:error, err} -> {:error, err}
       end
     end
