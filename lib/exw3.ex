@@ -700,7 +700,7 @@ defmodule ExW3 do
 
       case result do
         {:ok, data} ->
-          IO.inspect([ExW3.decode_output(abi, method_name, data))], label: "DEBUG3")
+          IO.inspect([ExW3.decode_output(abi, method_name, data)], label: "DEBUG3")
           ([:ok] ++ ExW3.decode_output(abi, method_name, data)) |> List.to_tuple()
         {:error, err} -> {:error, err}
       end
